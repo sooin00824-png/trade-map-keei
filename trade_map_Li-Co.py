@@ -44,12 +44,13 @@ hs_description = {
     '810520': 'Cobalt mattes and other intermediate products of cobalt metallurgy; unwrought cobalt; cobalt powders'
 }
 
-    # ISO3 코드 변환 함수
-    def country_to_iso3(name):
-        try:
-            return pycountry.countries.lookup(name).alpha_3
-        except:
-            return None
+# ✅ 함수 정의는 파일 맨 바깥 (들여쓰기 없음)
+def country_to_iso3(name):
+    """국가명을 ISO3 코드로 변환"""
+    try:
+        return pycountry.countries.lookup(name).alpha_3
+    except LookupError:
+        return None
 
     # 수동 보정용 국가 코드
     country_fix = {
@@ -167,6 +168,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
