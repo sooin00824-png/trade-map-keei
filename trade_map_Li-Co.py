@@ -105,7 +105,7 @@ data = data.dropna(subset=['netwgt'])
     # 연도 컬럼 생성 (예: 201001 → 2010)
 data['year'] = data['period'].str[:4]
 
-    return data
+return data
 
 data = load_data()
 
@@ -194,6 +194,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
