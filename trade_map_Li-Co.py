@@ -44,7 +44,6 @@ def load_data():
     if 'period' in data.columns:
         data['year'] = data['period'].astype(str).str[:4]
 
-    st.write("📋 실제 열 이름:", list(data.columns))
     return data
 
 
@@ -174,3 +173,4 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
