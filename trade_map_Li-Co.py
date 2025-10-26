@@ -98,12 +98,12 @@ subset['netwgt_log'] = np.log10(subset['netwgt'].replace(0, np.nan))
 
     
     # 결측치 및 숫자 변환
-    data = data.dropna(subset=['partner_iso3', 'netwgt'])
-    data['netwgt'] = pd.to_numeric(data['netwgt'], errors='coerce')
-    data = data.dropna(subset=['netwgt'])
+data = data.dropna(subset=['partner_iso3', 'netwgt'])
+data['netwgt'] = pd.to_numeric(data['netwgt'], errors='coerce')
+data = data.dropna(subset=['netwgt'])
 
     # 연도 컬럼 생성 (예: 201001 → 2010)
-    data['year'] = data['period'].str[:4]
+data['year'] = data['period'].str[:4]
 
     return data
 
@@ -194,6 +194,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
