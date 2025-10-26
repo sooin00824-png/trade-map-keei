@@ -22,7 +22,7 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 def load_data():
     url = "https://drive.google.com/file/d/1OmJD2lFKlaJt_oXu2LuzkvdYkD-N8PzV/view?usp=drive_link"
     gdown.download(url, "netwgt_import_monthly.csv", quiet=False)
-    data = pd.read_csv("netwgt_import_monthly.csv")
+    data = pd.read_csv("netwgt_import_monthly.csv", encoding="utf-8-sig")
     return data
     
     # 열(column) 이름 소문자로 통일
@@ -171,6 +171,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
