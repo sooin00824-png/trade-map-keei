@@ -173,4 +173,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+st.caption("국가별 교역 규모의 편차가 커, 시각화의 균형을 위해 교역량에 로그 변환(log) 값을 적용하였습니다.")
+
+
 
