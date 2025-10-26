@@ -19,7 +19,6 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 # ✅ 1. 데이터 불러오기 및 전처리
 # ------------------------------
 @st.cache_data
-@st.cache_data
 def load_data():
     import gdown
 
@@ -91,6 +90,13 @@ def country_to_iso3(name):
         axis=1
     )
 
+    # netwgt를 안전하게 log10으로 변환
+subset['netwgt'] = pd.to_numeric(subset['netwgt'], errors='coerce')  # 문자 → 숫자
+subset['netwgt'] = subset['netwgt'].replace([np.inf, -np.inf], np.nan)  # 이상치 제거
+subset['netwgt'] = subset['netwgt'].clip(lower=0)  # 음수는 0으로
+subset['netwgt_log'] = np.log10(subset['netwgt'].replace(0, np.nan))
+
+    
     # 결측치 및 숫자 변환
     data = data.dropna(subset=['partner_iso3', 'netwgt'])
     data['netwgt'] = pd.to_numeric(data['netwgt'], errors='coerce')
@@ -188,6 +194,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
