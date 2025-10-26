@@ -15,6 +15,11 @@ import gdown
 st.set_page_config(page_title="국제 교역 데이터 지도", page_icon="🌐", layout="wide")
 st.title("🌐 리튬 및 코발트 국제 교역 지도")
 
+# 나머지 Streamlit UI 코드
+cmdcode = st.selectbox("📦 품목코드(HS Code)", sorted(data['cmdcode'].unique()))
+reporter = st.selectbox("📍 보고국가", sorted(data['reporter'].unique()))
+period = st.selectbox("🗓️ 기간", sorted(data['period'].unique()))
+
 # ------------------------------
 # ✅ 1. 데이터 불러오기 및 전처리
 # ------------------------------
@@ -194,6 +199,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
