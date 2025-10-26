@@ -22,12 +22,12 @@ def load_data():
     url = "https://raw.githubusercontent.com/sooinkim/trade-map-keei/main/netwgt_import_monthly.csv"
     data = pd.read_csv(url)
     for col in ['period', 'cmdcode', 'reporter', 'partner']:
-        data[col] = data[col].astype(str).str.strip()
+    data[col] = data[col].astype(str).str.strip()
     data.columns = data.columns.str.lower()
     data['reporter'] = data['reporter'].astype(str).str.strip().str.title()
     data['cmdcode'] = data['cmdcode'].astype(str).str.strip()
     if 'period' in data.columns:
-        data['year'] = data['period'].astype(str).str[:4]
+    data['year'] = data['period'].astype(str).str[:4]
     return data
 
 hs_description = {
@@ -167,6 +167,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
