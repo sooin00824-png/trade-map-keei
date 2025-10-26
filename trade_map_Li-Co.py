@@ -21,14 +21,20 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 def load_data():
     url = "https://raw.githubusercontent.com/sooinkim/trade-map-keei/main/netwgt_import_monthly.csv"
     data = pd.read_csv(url)
-    for col in ['period', 'cmdcode', 'reporter', 'partner']:
-    data[col] = data[col].astype(str).str.strip()
+    
+    # 열(column) 이름 소문자로 통일
     data.columns = data.columns.str.lower()
-    data['reporter'] = data['reporter'].astype(str).str.strip().str.title()
-    data['cmdcode'] = data['cmdcode'].astype(str).str.strip()
+    
+    # 문자열 전처리 (불필요한 공백 제거)
+    for col in ['period', 'cmdcode', 'reporter', 'partner']:
+        data[col] = data[col].astype(str).str.strip()
+
+    # 'year' 열 자동 생성
     if 'period' in data.columns:
-    data['year'] = data['period'].astype(str).str[:4]
+        data['year'] = data['period'].astype(str).str[:4]
+
     return data
+
 
 hs_description = {
     '283691': 'Lithium carbonates',
@@ -167,6 +173,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
