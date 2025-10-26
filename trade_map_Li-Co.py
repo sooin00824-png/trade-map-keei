@@ -21,6 +21,10 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 def load_data():
     url = "https://raw.githubusercontent.com/sooin00824-png/trade-map-keei/refs/heads/main/netwgt_import_monthly.csv"
     data = pd.read_csv(url)
+
+    # ✅ 'year' 컬럼 자동 생성 (앞 4자리 추출)
+    if 'period' in data.columns:
+        data['year'] = data['period'].astype(str).str[:4]    
     return data
 
     # 문자열화 및 공백 제거
@@ -150,4 +154,5 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
