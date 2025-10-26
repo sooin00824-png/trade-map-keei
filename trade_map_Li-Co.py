@@ -35,7 +35,6 @@ def load_data():
 
     return data
 
-
 hs_description = {
     '283691': 'Lithium carbonates',
     '282520': 'Lithium oxide and hydroxide',
@@ -44,11 +43,6 @@ hs_description = {
     '282200': 'Cobalt oxides and hydroxides; commercial cobalt oxides',
     '810520': 'Cobalt mattes and other intermediate products of cobalt metallurgy; unwrought cobalt; cobalt powders'
 }
-
-
-    # 문자열화 및 공백 제거
-    for col in ['period', 'cmdcode', 'reporter', 'partner']:
-        data[col] = data[col].astype(str).str.strip()
 
     # ISO3 코드 변환 함수
     def country_to_iso3(name):
@@ -173,6 +167,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
