@@ -19,8 +19,9 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 # ------------------------------
 @st.cache_data
 def load_data():
-    file_path = r"C:\sooinkim\netwgt_all\netwgt_import_monthly.csv"
-    data = pd.read_csv(file_path)
+    url = "https://raw.githubusercontent.com/sooin00824-png/trade-map-keei/refs/heads/main/netwgt_import_monthly.csv"
+    data = pd.read_csv(url)
+    return data
 
     # 문자열화 및 공백 제거
     for col in ['period', 'cmdcode', 'reporter', 'partner']:
@@ -149,3 +150,4 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
