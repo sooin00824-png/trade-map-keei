@@ -19,24 +19,41 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 # ✅ 1. 데이터 불러오기 및 전처리
 # ------------------------------
 @st.cache_data
+@st.cache_data
 def load_data():
-    url = "https://drive.google.com/file/d/1OmJD2lFKlaJt_oXu2LuzkvdYkD-N8PzV/view?usp=drive_link"
-    gdown.download(url, "netwgt_import_monthly.csv", quiet=False)
-    data = pd.read_csv("netwgt_import_monthly.csv", encoding="utf-8-sig")
-    return data
-    
-    # 열(column) 이름 소문자로 통일
-    data.columns = data.columns.str.lower()
-    
-    # 문자열 전처리 (불필요한 공백 제거)
-    for col in ['period', 'cmdcode', 'reporter', 'partner']:
-        data[col] = data[col].astype(str).str.strip()
+    import gdown
 
-    # 'year' 열 자동 생성
+    # ✅ 구글 드라이브 링크 (ID만 유지)
+    url = "https://drive.google.com/uc?id=1OmJD2lFKlaJt_oXu2LuzkvdYkD-N8PzV"
+
+    # ✅ 파일 다운로드
+    gdown.download(url, "netwgt_import_monthly.csv", quiet=False)
+
+    # ✅ CSV 읽기 (BOM 문제 해결)
+    data = pd.read_csv("netwgt_import_monthly.csv", encoding="utf-8-sig")
+
+    # ✅ 열 이름 정리 (공백, 대소문자, BOM 제거)
+    data.columns = (
+        data.columns
+        .str.strip()
+        .str.lower()
+        .str.replace('\ufeff', '', regex=False)
+    )
+
+    # ✅ 주요 열 공백 제거
+    for col in ['period', 'cmdcode', 'reporter', 'partner']:
+        if col in data.columns:
+            data[col] = data[col].astype(str).str.strip()
+
+    # ✅ period에서 연도 추출
     if 'period' in data.columns:
         data['year'] = data['period'].astype(str).str[:4]
 
+    # ✅ 확인용 (나중에 주석처리 가능)
+    st.write("📋 실제 열 이름:", list(data.columns))
+
     return data
+
 
 hs_description = {
     '283691': 'Lithium carbonates',
@@ -171,6 +188,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
