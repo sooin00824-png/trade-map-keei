@@ -19,13 +19,24 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 # ------------------------------
 @st.cache_data
 def load_data():
-    url = "https://raw.githubusercontent.com/sooin00824-png/trade-map-keei/refs/heads/main/netwgt_import_monthly.csv"
+    url = "https://raw.githubusercontent.com/sooinkim/trade-map-keei/main/netwgt_import_monthly.csv"
     data = pd.read_csv(url)
-
-    # ✅ 'year' 컬럼 자동 생성 (앞 4자리 추출)
+    data.columns = data.columns.str.lower()
+    data['reporter'] = data['reporter'].astype(str).str.strip().str.title()
+    data['cmdcode'] = data['cmdcode'].astype(str).str.strip()
     if 'period' in data.columns:
-        data['year'] = data['period'].astype(str).str[:4]    
+        data['year'] = data['period'].astype(str).str[:4]
     return data
+
+hs_description = {
+    '283691': 'Lithium carbonates',
+    '282520': 'Lithium oxide and hydroxide',
+    '282619': 'Fluorides (excl. of aluminium and mercury)',
+    '260500': 'Cobalt ores and concentrates',
+    '282200': 'Cobalt oxides and hydroxides; commercial cobalt oxides',
+    '810520': 'Cobalt mattes and other intermediate products of cobalt metallurgy; unwrought cobalt; cobalt powders'
+}
+
 
     # 문자열화 및 공백 제거
     for col in ['period', 'cmdcode', 'reporter', 'partner']:
@@ -154,5 +165,6 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
