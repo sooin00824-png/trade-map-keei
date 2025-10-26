@@ -21,6 +21,8 @@ st.title("🌐 리튬 및 코발트 국제 교역 지도")
 def load_data():
     url = "https://raw.githubusercontent.com/sooinkim/trade-map-keei/main/netwgt_import_monthly.csv"
     data = pd.read_csv(url)
+    for col in ['period', 'cmdcode', 'reporter', 'partner']:
+        data[col] = data[col].astype(str).str.strip()
     data.columns = data.columns.str.lower()
     data['reporter'] = data['reporter'].astype(str).str.strip().str.title()
     data['cmdcode'] = data['cmdcode'].astype(str).str.strip()
@@ -165,6 +167,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
