@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import pycountry
+import gdown
 
 # ------------------------------
 # ✅ 3. Streamlit UI 구성
@@ -170,6 +171,7 @@ else:
 # ------------------------------
 st.markdown("---")
 st.caption("📊 **Source:** UN COMTRADE Database")
+
 
 
 
