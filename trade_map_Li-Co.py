@@ -200,15 +200,19 @@ else:
 # ⚠️ netwgt raw data 정보 제공 (단위: kg) 
 # --------------------
 
-data['netwgt'] = (
-    data['netwgt']
-    .astype(str)
-    .str.replace(',', '', regex=True)
-    .astype(float)
-)
+st.markdown("### 🔍 Reporter 국가 수입량(단위: kg)")
 
-st.write("🔍 Reporter 국가 수입량(단위:kg):")
-st.dataframe(subset[['cmdcode', 'period', 'reporter', 'partner', 'netwgt']], hide_index=True)
+# 보기 단위별로 표시할 컬럼 분리
+if view_mode == "월별":
+    display_cols = ['cmdcode', 'period', 'reporter', 'partner', 'netwgt']
+else:
+    display_cols = ['partner', 'partner_iso3', 'netwgt']
+
+# 존재하는 열만 선택 (KeyError 방지)
+subset_display = subset.reindex(columns=[c for c in display_cols if c in subset.columns])
+
+# 인덱스 없이 출력
+st.dataframe(subset_display, hide_index=True, use_container_width=True)
 
 
 # ------------------------------
@@ -223,3 +227,4 @@ st.caption("주3) 데이터가 부재한 경우 '⚠️선택한 조건에 해�
 st.caption("주4) ...")
 
 # 데이터 구조에 대해서 설명: 예를 들어 우리나라의 경우 2013년부터 데이터 확보가 가능했다는 등
+
