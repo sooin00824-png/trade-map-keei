@@ -160,6 +160,15 @@ else:
     subset = subset.groupby(['partner', 'partner_iso3'], as_index=False)['netwgt'].sum()
     title_text = f"{reporter}의 {cmdcode} 수입 (연도: {year}) [log₁₀(무역량)]"
 
+# netwgt 값 변환에 대한 정제
+
+data['netwgt'] = (
+    data['netwgt']
+    .astype(str)
+    .str.replace(',', '', regex=True)
+    .astype(float)
+)
+
 st.write("🔍 ISO 코드 변환 결과:")
 st.dataframe(subset[['partner', 'partner_iso3', 'netwgt']])
 
@@ -202,6 +211,7 @@ st.caption("주3) 데이터가 부재한 경우 '⚠️선택한 조건에 해�
 st.caption("주4) ...")
 
 # 데이터 구조에 대해서 설명: 예를 들어 우리나라의 경우 2013년부터 데이터 확보가 가능했다는 등
+
 
 
 
