@@ -65,10 +65,30 @@ country_fix = {
     'Korea, Rep.': 'KOR',
     'Republic of Korea': 'KOR',
     'United States': 'USA',
+    'USA' : 'USA',
     'Russian Federation': 'RUS',
     'Viet Nam': 'VNM',
     'Iran (Islamic Republic of)': 'IRN',
-    'Lao People\'s Democratic Republic': 'LAO',
+    'Lao People's Democratic Republic': 'LAO',
+        # ✅ 일반적인 표기 변형
+    'Dem. Rep. of the Congo': 'COD',
+    'Congo': 'COG',
+    'Iran': 'IRN',
+    'Turkiye': 'TUR',
+    'United Kingdom': 'GBR',
+    'Brunei Darussalam': 'BRN',
+    'Cote d'Ivoire': 'CIV',
+    'Hong Kong': 'HKG',
+    'New Caledonia': 'NCL',
+    'Bolivia (Plurinational State of)': 'BOL',
+
+    # ✅ 자주 등장하는 지역/비국가 코드
+    'Other Asia, nes': 'OWA',  # “기타 아시아” → 실제 국가코드 아님 (지도에서 제외됨)
+    
+    # ✅ 표준 코드가 불확실한 예외 처리 (pycountry로 커버 안 됨)
+    'Palestine': 'PSE',
+    'Kosovo': 'XKX',
+    'Taiwan': 'TWN',
     'Czechia': 'CZE',
     'Dominican Rep.': 'DOM'
 }
@@ -180,6 +200,7 @@ st.caption("주3) 데이터가 부재한 경우 '⚠️선택한 조건에 해�
 st.caption("주4) ...")
 
 # 데이터 구조에 대해서 설명: 예를 들어 우리나라의 경우 2013년부터 데이터 확보가 가능했다는 등
+
 
 
 
