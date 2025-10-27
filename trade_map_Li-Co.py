@@ -69,7 +69,6 @@ country_fix = {
     'Russian Federation': 'RUS',
     'Viet Nam': 'VNM',
     'Iran (Islamic Republic of)': 'IRN',
-    'Lao People's Democratic Republic': 'LAO',
         # ✅ 일반적인 표기 변형
     'Dem. Rep. of the Congo': 'COD',
     'Congo': 'COG',
@@ -200,6 +199,7 @@ st.caption("주3) 데이터가 부재한 경우 '⚠️선택한 조건에 해�
 st.caption("주4) ...")
 
 # 데이터 구조에 대해서 설명: 예를 들어 우리나라의 경우 2013년부터 데이터 확보가 가능했다는 등
+
 
 
 
