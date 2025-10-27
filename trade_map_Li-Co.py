@@ -50,6 +50,16 @@ def load_data():
 data = load_data()  # ✅ 여기서 data가 처음 정의됨!
 
 
+# ⚠️ netwgt None으로 표식하는 것 오류 해결
+data['netwgt'] = (
+    data['netwgt']
+    .astype(str)                 # 문자열로 변환
+    .str.replace(',', '', regex=True)  # 쉼표 제거
+    .replace('', np.nan)         # 빈 문자열은 NaN으로
+    .astype(float)               # 숫자로 변환
+)
+
+
 # ------------------------------
 # ✅ 2. ISO 코드 변환 함수
 # ------------------------------
@@ -221,6 +231,7 @@ debug = data[
     (data['period'].astype(str) == '201003')
 ]
 st.write(debug[['partner', 'partner_iso3', 'netwgt']])
+
 
 
 
