@@ -213,6 +213,15 @@ st.caption("주4) ...")
 # 데이터 구조에 대해서 설명: 예를 들어 우리나라의 경우 2013년부터 데이터 확보가 가능했다는 등
 
 
+# 점검용 디버깅 코드
+st.subheader("🔍 France / 282520 / 201003 데이터 점검")
+debug = data[
+    (data['cmdcode'] == '282520') &
+    (data['reporter'].str.strip() == 'France') &
+    (data['period'].astype(str) == '201003')
+]
+st.write(debug[['partner', 'partner_iso3', 'netwgt']])
+
 
 
 
